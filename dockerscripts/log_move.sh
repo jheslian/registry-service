@@ -4,11 +4,10 @@ dailypath="/var/www/html/log/$subfolder/"
 
 mkdir -p $dailypath
 
-# Dump the log file to a daily folder and lists it in the dump_list file. 
 # Moves the the log file to a new folder with a specific name, then adds the log file absolute path to a file list 
 bash /dockerscripts/log_dump.sh /workspace/log_server/server.log $dailypath >> /var/www/html/log/dump_list.txt
 
-absolPathToFile=$(tail -n 1 /dockerscripts/dump_list.txt)
+absolPathToFile=$(tail -n 1 /var/www/html/log/dump_list.txt)
 logname=${absolPathToFile##*/}
 absolPathToJson="${absolPathToFile%.*}.json"
 
