@@ -1,7 +1,7 @@
 #!/bin/bash
-echo "[" >> ./logs.json
-cat $1 | while read line
 
+echo -e "["
+cat $1 | while read line
 # recover the date, type, message on each line
 
 do 
@@ -18,9 +18,9 @@ do
              message=$(echo $line | cut -d':' -f4-  | awk '{ sub(/^[ \t]+/, ""); print }')
                          
              object="{\n \"date\":\"$date\",\n \"type\":\"$type\",\n \"message\":\"$message\" \n },"  
-             echo -e $object >> ./logs.json
+             echo -e $object #>> /logs.json
     fi	
 
 done
 
-echo "]" >> ./logs.json
+echo -e "]"
