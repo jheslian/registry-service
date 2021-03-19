@@ -6,9 +6,9 @@ mkdir -p $dailypath
 
 # Dump the log file to a daily folder and lists it in the dump_list file. 
 #Validates 1/, 2/, 3/
-bash /dockerscripts/log_dump.sh /workspace/log_server/server.log $dailypath >> /dockerscripts/dump_list.txt
+bash /dockerscripts/log_dump.sh /workspace/log_server/server.log $dailypath >> /var/www/html/log/dump_list.txt
 
-absolPathToFile=$(tail -n 1 /dockerscripts/dump_list.txt)
+absolPathToFile=$(tail -n 1 /var/www/html/log/dump_list.txt)
 logname=${absolPathToFile##*/}
 absolPathToJson="${absolPathToFile%.*}.json"
 

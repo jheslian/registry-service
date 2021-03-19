@@ -3,12 +3,34 @@
     <head>
         <meta charset="utf-8" />
         <title></title>
-        <script src="modernizr-2.0.6.js"></script>
-        <script src="canvas.js"></script>
     </head>
+    <style>
+        * {
+            text-align: center;
+        }
+    </style>
     <body>
-        <div style="position:absolute;top:50px;left:50px;">
-	<p>THIS IS NOT A DRILLLLLLLLLLLLLLLLL</p>
-	</div>
+        
+	<h1>Download all logs</h1>
+    <p><a href="log.tar.gz" download>Click here</a></p>
+	
+    <h1>Log list</h1>
+    <div id="container">
+    </div>
+    
+    
+    <script>
+        /* fetch the list from container and print the content as a link */
+        let file = document.getElementById('container');
+        
+        fetch('./log/dump_list.txt')
+        .then(resp => resp.blob())
+        .then(blob => blob.text())
+        .then(text => {
+        console.log(text)
+        file.innerHTML+= '<p><a href="'+ text.slice(13) + '" download>' + text +  '</a></p></br>'
+        })
+        .catch((e) => console.error(e));
+    </script>
     </body>
 </html>
